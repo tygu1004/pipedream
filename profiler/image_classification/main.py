@@ -250,7 +250,7 @@ def main():
         	root = valdir,
         	train = False,
         	download = True,
-        	transforms = transforms.Compose([
+        	transform = transforms.Compose([
             transforms.Resize(256),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
