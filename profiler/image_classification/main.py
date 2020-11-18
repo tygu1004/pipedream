@@ -210,9 +210,11 @@ def main():
                                      std=[0.229, 0.224, 0.225])
 
     if args.arch == 'inception_v3':
-        train_dataset = datasets.ImageFolder(
-            traindir,
-            transforms.Compose([
+        train_dataset = datasets.CIFAR10(
+      		root = traindir,
+      		train = True,
+      		download = True,
+            transform = transforms.Compose([
                 transforms.RandomResizedCrop(299),
                 transforms.ToTensor(),
                 normalize,
@@ -221,9 +223,11 @@ def main():
         if args.synthetic_data:
             train_dataset = SyntheticDataset((3, 299, 299), len(train_dataset))
     else:
-        train_dataset = datasets.ImageFolder(
-            traindir,
-            transforms.Compose([
+        train_dataset = datasets.CIFAR10(
+            root = traindir,
+      		train = True,
+      		download = True,
+            transform = transforms.Compose([
                 transforms.RandomResizedCrop(224),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
